@@ -14,8 +14,7 @@ final class DebugDetailHeadersViewController: UIViewController, HighlightReloada
     // MARK: Properties
     let recordHeaderDetailInfo: RecordHeaderDetailInfo
 
-    private let tableView = UITableView(frame: .zero,
-                                            style: .plain)
+    private let tableView = UITableView(frame: .zero, style: .plain)
 
     var highlight: String = ""
 
@@ -24,8 +23,7 @@ final class DebugDetailHeadersViewController: UIViewController, HighlightReloada
 
         self.recordHeaderDetailInfo = recordHeaderDetailInfo
 
-        super.init(nibName: nil,
-                   bundle: nil)
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {

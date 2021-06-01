@@ -40,8 +40,7 @@ final class FNMDebugDetailViewController: FNMViewController {
         let responseBodyDetails = self.recordDetailInfo.responseBodyDetails
         self.responseBodyViewController = DebugDetailBodyViewController(recordBodyDetailInfo: responseBodyDetails)
 
-        super.init(nibName: nil,
-                   bundle: nil)
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {

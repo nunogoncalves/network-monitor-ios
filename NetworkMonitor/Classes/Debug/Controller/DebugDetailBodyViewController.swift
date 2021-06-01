@@ -25,8 +25,7 @@ final class DebugDetailBodyViewController: UIViewController, HighlightReloadable
 
         self.recordBodyDetailInfo = recordBodyDetailInfo
 
-        super.init(nibName: nil,
-                   bundle: nil)
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -77,9 +76,10 @@ private extension DebugDetailBodyViewController {
         }
 
         self.view.addSubview(self.titleLabel)
+        self.titleLabel.textAlignment = .center
 
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.titleLabel.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
+        self.titleLabel.topAnchor.constraint(equalTo: guide.topAnchor, constant: 5).isActive = true
         self.titleLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
         self.titleLabel.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
         self.titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Constants.titleLabelMinHeight).isActive = true

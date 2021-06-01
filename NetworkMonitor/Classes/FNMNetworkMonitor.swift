@@ -59,7 +59,7 @@ public final class FNMNetworkMonitor: NSObject {
     /// Date used for internal logic
     let referenceDate = Date()
 
-    var ignoredDomains: [String] = []
+    public var ignoredDomains: [String] = []
 
     /// Start monitoring the network
     @objc

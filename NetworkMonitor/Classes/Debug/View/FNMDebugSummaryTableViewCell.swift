@@ -87,6 +87,8 @@ extension FNMDebugSummaryTableViewCell {
         self.contentView.addSubview(self.urlLabel)
 
         self.statusIndicator.backgroundColor = .gray
+        self.urlLabel.numberOfLines = 3
+        self.urlLabel.lineBreakMode = .byTruncatingTail
         self.metaLabel.numberOfLines = 3
         self.separator.backgroundColor = .darkGray
         self.urlLabel.numberOfLines = 0
