@@ -73,7 +73,8 @@ private extension DebugDetailHeadersViewController {
         self.tableView.estimatedRowHeight = Constants.tableViewEstimatedHeight
         self.tableView.separatorInset = UIEdgeInsets.zero
         self.tableView.keyboardDismissMode = .onDrag
-        self.tableView.backgroundColor = .white
+        self.tableView.backgroundColor = .backgroundColor
+        self.view.backgroundColor = .backgroundColor
 
         self.view.addSubview(self.tableView)
 

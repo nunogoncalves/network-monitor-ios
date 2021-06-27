@@ -181,7 +181,6 @@ private extension FNMDebugListingViewController {
 
         self.searchBar.delegate = self
         self.searchBar.placeholder = Constants.searchPlaceholderTitle
-        self.searchBar.barTintColor = .white
 
         self.forceSearchBarTextColor(self.searchBar)
 
@@ -193,7 +192,9 @@ private extension FNMDebugListingViewController {
         self.tableView.estimatedRowHeight = Constants.tableViewEstimatedHeight
         self.tableView.separatorInset = UIEdgeInsets.zero
         self.tableView.keyboardDismissMode = .onDrag
-        self.tableView.backgroundColor = .white
+        self.tableView.backgroundColor = .backgroundColor
+
+        self.view.backgroundColor = .backgroundColor
 
         self.view.addSubview(self.searchBar)
         self.view.addSubview(self.tableView)

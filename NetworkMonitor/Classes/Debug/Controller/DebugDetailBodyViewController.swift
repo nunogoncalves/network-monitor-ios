@@ -78,6 +78,8 @@ private extension DebugDetailBodyViewController {
         self.view.addSubview(self.titleLabel)
         self.titleLabel.textAlignment = .center
 
+        self.view.backgroundColor = .backgroundColor
+
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.titleLabel.topAnchor.constraint(equalTo: guide.topAnchor, constant: 5).isActive = true
         self.titleLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
@@ -119,14 +121,14 @@ private extension DebugDetailBodyViewController {
             self.titleLabel.text = self.recordBodyDetailInfo.body.title
 
             self.textView.isEditable = false
-            self.textView.backgroundColor = .white
+            self.textView.backgroundColor = .backgroundColor
 
             let textViewAttributedText = NSMutableAttributedString(string: data)
 
             let textViewAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.boldSystemFont(ofSize: Constants.textViewFontSize),
                                                                      .kern: 0.0,
                                                                      .baselineOffset: 0.0,
-                                                                     .foregroundColor: UIColor.black]
+                                                                     .foregroundColor: UIColor.textColor]
 
             textViewAttributedText.addAttributes(textViewAttributes, range: NSRange(location: 0, length: textViewAttributedText.string.count))
 

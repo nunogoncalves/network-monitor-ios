@@ -36,12 +36,12 @@ class FNMDebugSummaryTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
 
-        self.contentView.backgroundColor = .white
+        self.contentView.backgroundColor = .backgroundColor
     }
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
 
-        self.contentView.backgroundColor = highlighted ? .lightGray : .white
+        self.contentView.backgroundColor = highlighted ? .lightGray : .backgroundColor
     }
 }
 
@@ -87,10 +87,8 @@ extension FNMDebugSummaryTableViewCell {
         self.contentView.addSubview(self.urlLabel)
 
         self.statusIndicator.backgroundColor = .gray
-        self.urlLabel.numberOfLines = 3
-        self.urlLabel.lineBreakMode = .byTruncatingTail
         self.metaLabel.numberOfLines = 3
-        self.separator.backgroundColor = .darkGray
+        self.separator.backgroundColor = .separatorColor
         self.urlLabel.numberOfLines = 0
 
         let guide: UILayoutGuide
@@ -163,10 +161,12 @@ extension FNMDebugSummaryTableViewCell {
     func configureURLText(_ string: String) {
 
         self.urlLabel.text = string
-        self.urlLabel.textColor = .black
+        self.urlLabel.textColor = .textColor
         self.urlLabel.textAlignment = .center
         self.urlLabel.font = UIFont.boldSystemFont(ofSize: Constants.cellFontSize)
         self.urlLabel.lineBreakMode = .byClipping
+        self.contentView.backgroundColor = .backgroundColor
+        self.metaLabel.textColor = .textColor
     }
 
     class func requestResponseTintColor(_ conclusion: FNMHTTPRequestRecordConclusionType?) -> UIColor {

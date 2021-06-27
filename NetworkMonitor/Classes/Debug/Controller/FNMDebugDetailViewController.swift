@@ -132,7 +132,7 @@ private extension FNMDebugDetailViewController {
 
         self.searchBar.delegate = self
         self.searchBar.placeholder = Constants.searchPlaceholderTitle
-        self.searchBar.barTintColor = .white
+        self.view.backgroundColor = .backgroundColor
 
         self.forceSearchBarTextColor(self.searchBar)
 
