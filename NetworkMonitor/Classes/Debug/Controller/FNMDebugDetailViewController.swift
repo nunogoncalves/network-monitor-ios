@@ -94,64 +94,35 @@ private extension FNMDebugDetailViewController {
 
         self.navigationItem.title = Constants.title
 
-        if #available(iOS 13.0, *) {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: Constants.backImage),
+                                                                style: .plain,
+                                                                target: self,
+                                                                action: #selector(self.back))
 
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: Constants.backImage),
-                                                                     style: .plain,
-                                                                     target: self,
-                                                                     action: #selector(self.back))
+        let copyButton = UIBarButtonItem(image: UIImage(systemName: Constants.copyImage),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(self.copyResponseContents))
 
-            let copyButton = UIBarButtonItem(image: UIImage(systemName: Constants.copyImage),
-                                             style: .plain,
-                                             target: self,
-                                             action: #selector(self.copyResponseContents))
+        let exportButton = UIBarButtonItem(image: UIImage(systemName: Constants.exportImage),
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(self.exportViaEmail))
 
-            let exportButton = UIBarButtonItem(image: UIImage(systemName: Constants.exportImage),
-                                               style: .plain,
-                                               target: self,
-                                               action: #selector(self.exportViaEmail))
-
-            self.navigationItem.rightBarButtonItems = [exportButton, copyButton]
-
-        } else {
-
-            let copyButton = UIBarButtonItem(title: Constants.copyTitle,
-                                             style: .plain,
-                                             target: self,
-                                             action: #selector(self.exportViaEmail))
-
-            let exportButton = UIBarButtonItem(title: Constants.exportTitle,
-                                             style: .plain,
-                                             target: self,
-                                             action: #selector(self.exportViaEmail))
-
-            self.navigationItem.rightBarButtonItems = [exportButton, copyButton]
-        }
+        self.navigationItem.rightBarButtonItems = [exportButton, copyButton]
     }
 
     func configureViews() {
 
         self.searchBar.delegate = self
         self.searchBar.placeholder = Constants.searchPlaceholderTitle
-        self.searchBar.barTintColor = .white
-
-        self.forceSearchBarTextColor(self.searchBar)
 
         self.pageController.dataSource = self
 
         self.view.addSubview(self.searchBar)
         self.view.addSubview(self.pageController.view)
 
-        let superviewGuide: UILayoutGuide
-
-        if #available(iOS 11.0, *) {
-
-            superviewGuide = self.view.safeAreaLayoutGuide
-
-        } else {
-
-            superviewGuide = self.view.readableContentGuide
-        }
+        let superviewGuide = self.view.safeAreaLayoutGuide
 
         self.searchBar.translatesAutoresizingMaskIntoConstraints = false
         self.searchBar.topAnchor.constraint(equalTo: superviewGuide.topAnchor).isActive = true
@@ -241,14 +212,8 @@ private extension FNMDebugDetailViewController {
 
     private var encodedRecordString: String? {
 
-        if let encodedData = self.encodedRecordData {
-
-            return String(data: encodedData, encoding: .utf8)
-
-        } else {
-
-            return nil
-        }
+        guard let encodedData = self.encodedRecordData else { return nil }
+        return String(data: encodedData, encoding: .utf8)
     }
 }
 

@@ -36,12 +36,12 @@ class FNMDebugSummaryTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
 
-        self.contentView.backgroundColor = .white
+        self.contentView.backgroundColor = .systemBackground
     }
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
 
-        self.contentView.backgroundColor = highlighted ? .lightGray : .white
+        self.contentView.backgroundColor = highlighted ? .secondarySystemBackground : .systemBackground
     }
 }
 
@@ -67,9 +67,9 @@ extension FNMDebugSummaryTableViewCell {
         static let padding: CGFloat = 4.0
         static let negativePadding: CGFloat = Constants.padding * -1
         static let timeUnit = "ms"
-        static let statUpArrowUnicode = "\u{2191}"
-        static let statDownArrowUnicode = "\u{2193}"
-        static let downArrowUnicode = "\u{25BC}"
+        static let statUpArrowUnicode = "↑"
+        static let statDownArrowUnicode = "↓"
+        static let downArrowUnicode = "⬇" // Redirected
         static let emSpaceUnicode = "\u{2003}"
         static let enSpaceUnicode = "\u{2002}"
     }
@@ -86,21 +86,12 @@ extension FNMDebugSummaryTableViewCell {
         self.contentView.addSubview(self.separator)
         self.contentView.addSubview(self.urlLabel)
 
-        self.statusIndicator.backgroundColor = .gray
+        self.statusIndicator.backgroundColor = .systemBackground
         self.metaLabel.numberOfLines = 3
-        self.separator.backgroundColor = .darkGray
+        self.separator.backgroundColor = .secondaryLabel
         self.urlLabel.numberOfLines = 0
 
-        let guide: UILayoutGuide
-
-        if #available(iOS 11.0, *) {
-
-            guide = self.contentView.safeAreaLayoutGuide
-
-        } else {
-
-            guide = self.contentView.readableContentGuide
-        }
+        let guide = self.contentView.safeAreaLayoutGuide
 
         self.statusIndicator.translatesAutoresizingMaskIntoConstraints = false
         self.statusIndicator.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
@@ -137,7 +128,7 @@ extension FNMDebugSummaryTableViewCell {
         let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: Constants.cellFontSize),
                                                               .kern: 0.0,
                                                               .baselineOffset: 0.0,
-                                                              .foregroundColor: UIColor.black,
+                                                              .foregroundColor: UIColor.label,
                                                               .paragraphStyle: style]
 
         titleAttributedText.addAttributes(titleAttributes, range: NSRange(location: 0, length: titleAttributedText.string.count))
@@ -161,7 +152,7 @@ extension FNMDebugSummaryTableViewCell {
     func configureURLText(_ string: String) {
 
         self.urlLabel.text = string
-        self.urlLabel.textColor = .black
+        self.urlLabel.textColor = .label
         self.urlLabel.textAlignment = .center
         self.urlLabel.font = UIFont.boldSystemFont(ofSize: Constants.cellFontSize)
         self.urlLabel.lineBreakMode = .byClipping
@@ -240,27 +231,28 @@ extension FNMDebugSummaryTableViewCell {
 
     class func requestResponseURLString(_ requestRecord: FNMHTTPRequestRecord) -> String {
 
-        guard let requestURL = requestRecord.request.url else { return "" }
+        guard let requestURL = requestRecord.request.url,
+              var components = URLComponents(url: requestURL, resolvingAgainstBaseURL: false)
+        else { return "" }
+
+        components.query = nil
 
         let requestSize = requestRecord.requestSize.byteString
         let responseSize = requestRecord.responseSize.byteString
 
-        var text = """
-            \(Constants.statUpArrowUnicode) \(requestSize) \(Constants.statDownArrowUnicode) \(responseSize)
-        
-            \(requestURL.absoluteString)
-        """
+        var text = components.string ?? ""
 
         if let conclusion = requestRecord.conclusion,
             case FNMHTTPRequestRecordConclusionType.redirected(let newRequest) = conclusion,
             let newRequestURL = newRequest?.url {
 
-            text.append("\n")
+            text.append("\n\n")
             text.append(Constants.downArrowUnicode)
-            text.append("\n")
+            text.append("\n\n")
             text.append(newRequestURL.absoluteString)
         }
 
+        text.append("\n\n\(Constants.statUpArrowUnicode) \(requestSize) \(Constants.statDownArrowUnicode) \(responseSize)")
         return text.removingPercentEncoding ?? text
     }
 }

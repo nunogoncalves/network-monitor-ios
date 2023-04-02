@@ -66,7 +66,7 @@ extension FNMDebugDetailInfoTableViewCell {
 
         let generalAttributes: [NSAttributedString.Key: Any] = [.kern: 0.0,
                                                                 .baselineOffset: 0.0,
-                                                                .foregroundColor: UIColor.black,
+                                                                .foregroundColor: UIColor.label,
                                                                 .paragraphStyle: style]
 
         titleAttributedText.addAttributes(generalAttributes, range: titleRange)
@@ -101,7 +101,7 @@ extension FNMDebugDetailInfoTableViewCell {
         heightConstraint.priority = .defaultHigh
         heightConstraint.isActive = true
 
-        self.contentView.backgroundColor = .white
+        self.contentView.backgroundColor = .systemBackground
 
         self.contentView.addSubview(self.typeIndicator)
         self.contentView.addSubview(self.titleLabel)
@@ -111,16 +111,7 @@ extension FNMDebugDetailInfoTableViewCell {
         self.titleLabel.numberOfLines = 1
         self.subtitleLabel.numberOfLines = 0
 
-        let guide: UILayoutGuide
-
-        if #available(iOS 11.0, *) {
-
-            guide = self.contentView.safeAreaLayoutGuide
-
-        } else {
-
-            guide = self.contentView.readableContentGuide
-        }
+        let guide = self.contentView.safeAreaLayoutGuide
 
         self.typeIndicator.translatesAutoresizingMaskIntoConstraints = false
         self.typeIndicator.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true

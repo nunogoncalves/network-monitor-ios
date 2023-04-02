@@ -129,61 +129,39 @@ private extension FNMDebugListingViewController {
 
         self.navigationItem.title = Constants.title
 
-        if #available(iOS 13.0, *) {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: Constants.backImage),
+                                                                style: .plain,
+                                                                target: self,
+                                                                action: #selector(self.back))
 
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: Constants.backImage),
-                                                                    style: .plain,
-                                                                    target: self,
-                                                                    action: #selector(self.back))
-
-            self.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: Constants.exportImage),
-                                                                       style: .plain,
-                                                                       target: self,
-                                                                       action: #selector(self.exportViaEmail)),
-                                                       UIBarButtonItem(image: UIImage(systemName: Constants.sortImage),
-                                                                       style: .plain,
-                                                                       target: self,
-                                                                       action: #selector(self.toggleSortOrder)),
-                                                       UIBarButtonItem(image: UIImage(systemName: Constants.errorImage),
-                                                                       style: .plain,
-                                                                       target: self,
-                                                                       action: #selector(self.toggleErrorMode)),
-                                                       UIBarButtonItem(image: UIImage(systemName: Constants.resetImage),
-                                                                       style: .plain,
-                                                                       target: self,
-                                                                       action: #selector(self.resetRecords))]
-
-        } else {
-
-            self.navigationItem.rightBarButtonItems = [UIBarButtonItem(title: Constants.exportTitle,
-                                                                       style: .plain,
-                                                                       target: self,
-                                                                       action: #selector(self.exportViaEmail)),
-                                                       UIBarButtonItem(title: Constants.toggleSortTitle,
-                                                                       style: .plain,
-                                                                       target: self,
-                                                                       action: #selector(self.toggleSortOrder)),
-                                                       UIBarButtonItem(title: Constants.toggleErrorTitle,
-                                                                       style: .plain,
-                                                                       target: self,
-                                                                       action: #selector(self.toggleErrorMode)),
-                                                       UIBarButtonItem(title: Constants.toggleResetTitle,
-                                                                       style: .plain,
-                                                                       target: self,
-                                                                       action: #selector(self.resetRecords))]
-        }
+        self.navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(image: UIImage(systemName: Constants.exportImage),
+                            style: .plain,
+                            target: self,
+                            action: #selector(self.exportViaEmail)),
+            UIBarButtonItem(image: UIImage(systemName: Constants.sortImage),
+                            style: .plain,
+                            target: self,
+                            action: #selector(self.toggleSortOrder)),
+            UIBarButtonItem(image: UIImage(systemName: Constants.errorImage),
+                            style: .plain,
+                            target: self,
+                            action: #selector(self.toggleErrorMode)),
+            UIBarButtonItem(image: UIImage(systemName: Constants.resetImage),
+                            style: .plain,
+                            target: self,
+                            action: #selector(self.resetRecords))
+        ]
     }
 
     func configureTableView() {
 
+        self.statusLabel.numberOfLines = 3
         self.statusLabel.backgroundColor = .lightGray
         self.statusLabel.textAlignment = .center
 
         self.searchBar.delegate = self
         self.searchBar.placeholder = Constants.searchPlaceholderTitle
-        self.searchBar.barTintColor = .white
-
-        self.forceSearchBarTextColor(self.searchBar)
 
         self.tableView.register(FNMDebugSummaryTableViewCell.self,
                                 forCellReuseIdentifier: FNMDebugSummaryTableViewCell.reuseIdentifier())
@@ -192,23 +170,15 @@ private extension FNMDebugListingViewController {
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = Constants.tableViewEstimatedHeight
         self.tableView.separatorInset = UIEdgeInsets.zero
+        self.tableView.separatorColor = .secondaryLabel
         self.tableView.keyboardDismissMode = .onDrag
-        self.tableView.backgroundColor = .white
+        self.tableView.backgroundColor = .systemBackground
 
         self.view.addSubview(self.searchBar)
         self.view.addSubview(self.tableView)
         self.view.addSubview(self.statusLabel)
 
-        let superviewGuide: UILayoutGuide
-
-        if #available(iOS 11.0, *) {
-
-            superviewGuide = self.view.safeAreaLayoutGuide
-
-        } else {
-
-            superviewGuide = self.view.readableContentGuide
-        }
+        let superviewGuide = self.view.safeAreaLayoutGuide
 
         self.searchBar.translatesAutoresizingMaskIntoConstraints = false
         self.searchBar.topAnchor.constraint(equalTo: superviewGuide.topAnchor).isActive = true
@@ -268,7 +238,7 @@ private extension FNMDebugListingViewController {
         let requestSize = FNMNetworkMonitor.shared.totalRequestSize.byteString
         let responseSize = FNMNetworkMonitor.shared.totalResponseSize.byteString
 
-        self.statusLabel.text = "(\(count))  \(Constants.statUpArrowUnicode) \(requestSize)  \(Constants.statDownArrowUnicode) \(responseSize)"
+        self.statusLabel.text = "\n(\(count))  \(Constants.statUpArrowUnicode) \(requestSize)  \(Constants.statDownArrowUnicode) \(responseSize)\n"
     }
 
     func updateAllRecords(to newAllRecords: [FNMHTTPRequestRecord]) {
@@ -460,11 +430,7 @@ private extension FNMDebugListingViewController {
         }
 
         action.backgroundColor = .systemTeal
-
-        if #available(iOS 13, *) {
-
-            action.image = UIImage(systemName: Constants.exportImage, withConfiguration: nil)
-        }
+        action.image = UIImage(systemName: Constants.exportImage, withConfiguration: nil)
 
         return action
     }

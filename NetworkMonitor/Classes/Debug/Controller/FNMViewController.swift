@@ -27,22 +27,3 @@ extension FNMViewController {
         }
     }
 }
-
-extension FNMViewController {
-
-    func forceSearchBarTextColor(_ searchBar: UISearchBar) {
-
-        if #available(iOS 13.0, *) {
-
-            searchBar.searchTextField.textColor = .black
-
-        } else {
-
-            let subviewsOfSubviews = searchBar.subviews.flatMap { $0.subviews }
-
-            let searchTextField = (subviewsOfSubviews.first(where: { $0 is UITextField })) as? UITextField
-
-            searchTextField?.textColor = .black
-        }
-    }
-}

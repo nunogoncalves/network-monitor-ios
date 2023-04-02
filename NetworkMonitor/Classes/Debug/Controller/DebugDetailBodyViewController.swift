@@ -119,14 +119,12 @@ private extension DebugDetailBodyViewController {
             self.titleLabel.text = self.recordBodyDetailInfo.body.title
 
             self.textView.isEditable = false
-            self.textView.backgroundColor = .white
 
             let textViewAttributedText = NSMutableAttributedString(string: data)
 
             let textViewAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.boldSystemFont(ofSize: Constants.textViewFontSize),
                                                                      .kern: 0.0,
-                                                                     .baselineOffset: 0.0,
-                                                                     .foregroundColor: UIColor.black]
+                                                                     .baselineOffset: 0.0]
 
             textViewAttributedText.addAttributes(textViewAttributes, range: NSRange(location: 0, length: textViewAttributedText.string.count))
 

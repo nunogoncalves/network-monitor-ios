@@ -58,7 +58,6 @@ final class ViewController: UIViewController {
                                           repeats: true,
                                           block: { _ in self.fire() })
 
-        FNMNetworkMonitor.shared.configure(ignoredDomains: ["https://api.chucknorris.io"])
         FNMNetworkMonitor.shared.showDebugListingViewController(presentingNavigationController: self.navigationController)
     }
 
