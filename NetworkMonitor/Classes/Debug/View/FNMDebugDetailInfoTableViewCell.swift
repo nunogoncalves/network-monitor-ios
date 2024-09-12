@@ -66,7 +66,7 @@ extension FNMDebugDetailInfoTableViewCell {
 
         let generalAttributes: [NSAttributedString.Key: Any] = [.kern: 0.0,
                                                                 .baselineOffset: 0.0,
-                                                                .foregroundColor: UIColor.black,
+                                                                .foregroundColor: UIColor.textColor,
                                                                 .paragraphStyle: style]
 
         titleAttributedText.addAttributes(generalAttributes, range: titleRange)
@@ -101,7 +101,7 @@ extension FNMDebugDetailInfoTableViewCell {
         heightConstraint.priority = .defaultHigh
         heightConstraint.isActive = true
 
-        self.contentView.backgroundColor = .white
+        self.contentView.backgroundColor = .backgroundColor
 
         self.contentView.addSubview(self.typeIndicator)
         self.contentView.addSubview(self.titleLabel)

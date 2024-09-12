@@ -34,7 +34,7 @@ extension FNMViewController {
 
         if #available(iOS 13.0, *) {
 
-            searchBar.searchTextField.textColor = .black
+            searchBar.searchTextField.textColor = .textColor
 
         } else {
 
@@ -42,7 +42,7 @@ extension FNMViewController {
 
             let searchTextField = (subviewsOfSubviews.first(where: { $0 is UITextField })) as? UITextField
 
-            searchTextField?.textColor = .black
+            searchTextField?.textColor = .textColor
         }
     }
 }

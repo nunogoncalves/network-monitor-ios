@@ -14,8 +14,7 @@ final class DebugDetailHeadersViewController: UIViewController, HighlightReloada
     // MARK: Properties
     let recordHeaderDetailInfo: RecordHeaderDetailInfo
 
-    private let tableView = UITableView(frame: .zero,
-                                            style: .plain)
+    private let tableView = UITableView(frame: .zero, style: .plain)
 
     var highlight: String = ""
 
@@ -24,8 +23,7 @@ final class DebugDetailHeadersViewController: UIViewController, HighlightReloada
 
         self.recordHeaderDetailInfo = recordHeaderDetailInfo
 
-        super.init(nibName: nil,
-                   bundle: nil)
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -75,7 +73,8 @@ private extension DebugDetailHeadersViewController {
         self.tableView.estimatedRowHeight = Constants.tableViewEstimatedHeight
         self.tableView.separatorInset = UIEdgeInsets.zero
         self.tableView.keyboardDismissMode = .onDrag
-        self.tableView.backgroundColor = .white
+        self.tableView.backgroundColor = .backgroundColor
+        self.view.backgroundColor = .backgroundColor
 
         self.view.addSubview(self.tableView)
 

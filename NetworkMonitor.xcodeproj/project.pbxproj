@@ -25,6 +25,7 @@
 		A3DA63EE201B3637002CB2C0 /* FNMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DA63ED201B3637002CB2C0 /* FNMViewController.swift */; };
 		A3E27FC51FC81F9000245188 /* Request-Nodes-A.json in Resources */ = {isa = PBXBuildFile; fileRef = A3E27FC11FC81F8400245188 /* Request-Nodes-A.json */; };
 		A3E27FC71FC81F9000245188 /* Request-Nodes-B.json in Resources */ = {isa = PBXBuildFile; fileRef = A3E27FC01FC81F8400245188 /* Request-Nodes-B.json */; };
+		D0E770DA2688DBEB0063FA10 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E770D92688DBEB0063FA10 /* UIColor.swift */; };
 		F737BF202080F97D00ECCDE3 /* FNMHTTPRequestRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F737BF1F2080F97C00ECCDE3 /* FNMHTTPRequestRecord.swift */; };
 		F737BF222080F9B700ECCDE3 /* FNMHTTPRequestRecord+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F737BF212080F9B700ECCDE3 /* FNMHTTPRequestRecord+Codable.swift */; };
 		F737BF262080FC9100ECCDE3 /* FNMProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F737BF252080FC9100ECCDE3 /* FNMProfile.swift */; };
@@ -81,6 +82,7 @@
 		A3DA63ED201B3637002CB2C0 /* FNMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNMViewController.swift; sourceTree = "<group>"; };
 		A3E27FC01FC81F8400245188 /* Request-Nodes-B.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Request-Nodes-B.json"; sourceTree = "<group>"; };
 		A3E27FC11FC81F8400245188 /* Request-Nodes-A.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Request-Nodes-A.json"; sourceTree = "<group>"; };
+		D0E770D92688DBEB0063FA10 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		F737BF1F2080F97C00ECCDE3 /* FNMHTTPRequestRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FNMHTTPRequestRecord.swift; sourceTree = "<group>"; };
 		F737BF212080F9B700ECCDE3 /* FNMHTTPRequestRecord+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FNMHTTPRequestRecord+Codable.swift"; sourceTree = "<group>"; };
 		F737BF252080FC9100ECCDE3 /* FNMProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNMProfile.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				A395FFFC1FD83AB1001D6086 /* FNMAdditions.swift */,
+				D0E770D92688DBEB0063FA10 /* UIColor.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				F7EDC62020ADB2670027B771 /* FNMCurrentRunCodableContainer.swift in Sources */,
 				A395000C1FD83AB1001D6086 /* FNMNetworkMonitor.swift in Sources */,
 				A39500031FD83AB1001D6086 /* FNMDebugListingViewController.swift in Sources */,
+				D0E770DA2688DBEB0063FA10 /* UIColor.swift in Sources */,
 				F7BD0C5B20A4A3F900B1E3EA /* FNMLogger.swift in Sources */,
 				A38AEE691FE3CEFC00778860 /* FNMRecordDetailInfo.swift in Sources */,
 				433A1A0E2355DAFB00CB0A8D /* DebugDetailBodyViewController.swift in Sources */,
